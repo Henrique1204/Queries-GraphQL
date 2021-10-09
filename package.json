@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r sucrase/register src/index.js"
+    "dev": "nodemon -r sucrase/register src/index.js",
+    "server": "json-server --watch db/db.json"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   "homepage": "https://github.com/Henrique1204/Queries-GraphQL#readme",
   "dependencies": {
     "apollo-server": "^3.3.0",
-    "graphql": "^15.6.1"
+    "graphql": "^15.6.1",
+    "json-server": "^0.17.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

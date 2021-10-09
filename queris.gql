@@ -1,0 +1,13 @@
+query GET_PERSON {
+  id
+  name
+  age
+  married
+}
+
+query GET_DOCUMENTS {
+  # Se você estiver buscando um Array a query dever ser igual a isso, para afetar os objetos dentro do array.
+  documents {
+    RG
+  }
+}

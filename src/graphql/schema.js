@@ -1,31 +1,19 @@
 import { gql } from 'apollo-server-core';
 
-import documentsResolvers from './documents/resolvers';
-import documentsTypesDefs from './documents/typeDefs';
+import userResolvers from './user/resolvers';
+import userTypesDefs from './user/typeDefs';
 
 const rootTypesDefs = gql`
   type Query {
-    # Sinal de exclamação define um valor que não pode ser null.
-    id: ID!
-    name: String
-    age: Int
-    height: Float
-    married: Boolean
-    # Exclamação de dentro define que nenhum valor dentro do Array pode ser null.
-    nicknames: [String!]!
+    empty: Boolean!
   }
 `;
 
 const rootResolvers = {
   Query: {
-    id: () => '1',
-    name: () => 'Paulo Henrique',
-    age: () => 20,
-    height: () => 1.75,
-    married: () => false,
-    nicknames: () => ['Paulão', 'Rick', 'Henriqueta'],
+    empty: () => false,
   },
 };
 
-export const typeDefs = [rootTypesDefs, documentsTypesDefs];
-export const resolvers = [rootResolvers, documentsResolvers];
+export const typeDefs = [rootTypesDefs, userTypesDefs];
+export const resolvers = [rootResolvers, userResolvers];

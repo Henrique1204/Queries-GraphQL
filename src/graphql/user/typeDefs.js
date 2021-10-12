@@ -2,7 +2,8 @@ import { gql } from 'apollo-server-core';
 
 const userTypesDefs = gql`
   extend type Query {
-    user: User!
+    # Forma de passar um parâmetro para o resolver na query.
+    user(id: ID!): User!
     users: [User!]!
   }
 

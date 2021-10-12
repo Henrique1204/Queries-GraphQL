@@ -11,3 +11,14 @@ query GET_DOCUMENTS {
     RG
   }
 }
+
+query GET_USER_BY_ID {
+  user(id: "602") {
+    id
+    firstName
+    lastName
+    userName
+    indexRef
+    createdAt
+  }
+}

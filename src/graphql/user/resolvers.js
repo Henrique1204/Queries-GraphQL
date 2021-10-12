@@ -4,8 +4,8 @@ const users = async (_, __, { fetch }) => {
   return res.json();
 };
 
-const user = async (_, __, { fetch }) => {
-  const res = await fetch('http://localhost:3000/users/602');
+const user = async (_, { id }, { fetch }) => {
+  const res = await fetch('http://localhost:3000/users/' + id);
 
   return res.json();
 };

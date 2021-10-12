@@ -28,3 +28,16 @@ query GET_POST_BY_ID($postId: ID!) {
     title
   }
 }
+
+query GET_POST_ALIAS {
+  posts860: post(id: "860") {
+    id
+    titlePost: title
+  }
+
+  post940: post(id: "940") {
+    postId: id
+    id
+    title
+  }
+}

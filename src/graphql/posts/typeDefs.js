@@ -12,6 +12,7 @@ const postsTypesDefs = gql`
     body: String!
     indexRef: Int!
     createdAt: String!
+    unixTimestamp: String!
     # user: User!
   }
 `;

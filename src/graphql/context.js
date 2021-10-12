@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { getPosts, getUser } from '../../API';
+import { getUser, getPosts } from '../../api';
 
 const context = () => ({
   getUser: (path = '') => fetch(getUser(path)),

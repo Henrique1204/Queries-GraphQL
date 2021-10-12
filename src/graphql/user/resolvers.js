@@ -1,5 +1,4 @@
 const users = async (_, __, { getUser }) => {
-  console.log('Disgraça');
   const res = await getUser();
 
   return res.json();

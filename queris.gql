@@ -22,3 +22,9 @@ query GET_USER_BY_ID {
     createdAt
   }
 }
+
+query GET_POST_BY_ID($postId: ID!) {
+  post(id: $postId) {
+    title
+  }
+}

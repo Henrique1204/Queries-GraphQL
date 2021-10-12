@@ -22,7 +22,8 @@
   "dependencies": {
     "apollo-server": "^3.3.0",
     "graphql": "^15.6.1",
-    "json-server": "^0.17.0"
+    "json-server": "^0.17.0",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

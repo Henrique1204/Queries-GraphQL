@@ -5,9 +5,9 @@ const post = async (_, { id }, { getPosts }) => {
 };
 
 const posts = async (_, { input }, { getPosts }) => {
-  const apiFiltersInput = new URLSearchParams(input).toString();
+  const ApiFiltersInput = new URLSearchParams(input).toString();
 
-  const res = await getPosts('?' + apiFiltersInput);
+  const res = await getPosts('?' + ApiFiltersInput);
 
   return res.json();
 };

@@ -4,7 +4,7 @@ const userTypesDefs = gql`
   extend type Query {
     # Forma de passar um parâmetro para o resolver na query.
     user(id: ID!): User!
-    users(input: apiFiltersInput): [User!]!
+    users(input: ApiFiltersInput): [User!]!
   }
 
   type User {

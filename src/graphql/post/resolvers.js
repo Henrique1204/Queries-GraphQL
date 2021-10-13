@@ -4,8 +4,10 @@ const post = async (_, { id }, { getPosts }) => {
   return res.json();
 };
 
-const posts = async (_, __, { getPosts }) => {
-  const res = await getPosts();
+const posts = async (_, { input }, { getPosts }) => {
+  const apiFiltersInput = new URLSearchParams(input).toString();
+
+  const res = await getPosts('?' + apiFiltersInput);
 
   return res.json();
 };
@@ -18,7 +20,7 @@ const unixTimestamp = ({ createdAt }) => {
 
 const postsResolvers = {
   Query: { post, posts },
-  Posts: { unixTimestamp },
+  Post: { unixTimestamp },
 };
 
 export default postsResolvers;

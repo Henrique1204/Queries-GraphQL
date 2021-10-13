@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server-core';
 
-const postsTypesDefs = gql`
+const postTypesDefs = gql`
   extend type Query {
-    post(id: ID!): Posts!
-    posts: [Posts!]!
+    post(id: ID!): Post!
+    posts(input: apiFiltersInput): [Post!]!
   }
 
-  type Posts {
+  type Post {
     id: ID!
     title: String!
     body: String!
@@ -17,4 +17,4 @@ const postsTypesDefs = gql`
   }
 `;
 
-export default postsTypesDefs;
+export default postTypesDefs;

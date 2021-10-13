@@ -57,3 +57,14 @@ query GET_POST_WITH_FRAGMENT {
     ...post
   }
 }
+
+query GET_USERS_WITH_API_FILTERS {
+  users(input: {
+    _sort: "indexRef"
+    _order: "asc"
+    _limit: 4
+  }) {
+    id
+    indexRef
+  }
+}

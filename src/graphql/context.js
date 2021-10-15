@@ -1,12 +1,13 @@
 import fetch from 'node-fetch';
 
-import { GET_POST } from '../../api';
-import { makeUserDataLoader } from './user/dataloaders';
 import { getUsers } from './user/utils';
+import { makeUserDataLoader } from './user/dataloaders';
+
+import { getPosts } from './post/utils';
 
 const context = () => ({
   getUser: getUsers(fetch),
-  getPosts: (path = '') => fetch(GET_POST(path)),
+  getPosts: getPosts(fetch),
   userDataLoader: makeUserDataLoader(getUsers(fetch)),
 });
 

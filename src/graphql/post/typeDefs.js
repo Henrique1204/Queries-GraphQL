@@ -30,7 +30,7 @@ const postTypesDefs = gql`
     indexRef: Int!
     createdAt: String!
     unixTimestamp: String!
-    # user: User!
+    user: User!
   }
 
   union PostResult = PostNotFoundError | PostTimeout | Post

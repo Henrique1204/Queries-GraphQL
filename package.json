@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Henrique1204/Queries-GraphQL#readme",
   "dependencies": {
     "apollo-server": "^3.3.0",
+    "dataloader": "^2.0.0",
     "graphql": "^15.6.1",
     "json-server": "^0.17.0",
     "node-fetch": "^2.6.1"

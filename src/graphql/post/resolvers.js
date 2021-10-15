@@ -1,7 +1,3 @@
-import DataLoader from 'dataloader';
-import fetch from 'node-fetch';
-import { getUser } from '../../../api';
-
 const post = async (_, { id }, { getPosts }) => {
   const res = await getPosts(id);
   const json = await res.json();
@@ -39,17 +35,7 @@ const unixTimestamp = ({ createdAt }) => {
   return Math.floor(timestamp);
 };
 
-const userDataLoader = new DataLoader(async (ids) => {
-  const urlQuery = ids.join('&id=');
-  const url = getUser('?id=' + urlQuery);
-
-  const res = await fetch(url);
-  const users = await res.json();
-
-  return ids.map((id) => users.find((user) => user.id === id));
-});
-
-const user = async ({ userId }) => {
+const user = async ({ userId }, _, { userDataLoader }) => {
   return userDataLoader.load(userId);
 };
 

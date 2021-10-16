@@ -12,8 +12,13 @@ const users = async (_, { input }, { getUser }) => {
   return res.json();
 };
 
+const posts = async ({ id }, _, { postsDataLoader }) => {
+  return postsDataLoader.load(id);
+};
+
 const usersResolvers = {
   Query: { users, user },
+  User: { posts },
 };
 
 export default usersResolvers;

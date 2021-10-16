@@ -14,7 +14,7 @@ const userTypesDefs = gql`
     userName: String!
     indexRef: Int!
     createdAt: String!
-    # posts: [Posts!]!
+    posts: [Post!]!
   }
 `;
 

@@ -1,6 +1,5 @@
-const post = async (_, { id }, { getPosts }) => {
-  const res = await getPosts(id);
-  const json = await res.json();
+const post = async (_, { id }, { dataSources }) => {
+  const post = await dataSources.postApi.getPost(id);
 
   if (Math.round(Math.random()) === 1) {
     return {
@@ -10,7 +9,7 @@ const post = async (_, { id }, { getPosts }) => {
     };
   }
 
-  if (typeof json.id === 'undefined') {
+  if (typeof post.id === 'undefined') {
     return {
       statusCode: 404,
       message: 'Post not found',
@@ -18,15 +17,13 @@ const post = async (_, { id }, { getPosts }) => {
     };
   }
 
-  return json;
+  return post;
 };
 
-const posts = async (_, { input }, { getPosts }) => {
-  const ApiFiltersInput = new URLSearchParams(input).toString();
+const posts = async (_, { input }, { dataSources }) => {
+  const post = dataSources.postApi.getPosts(input);
 
-  const res = await getPosts('?' + ApiFiltersInput);
-
-  return res.json();
+  return post;
 };
 
 const unixTimestamp = ({ createdAt }) => {

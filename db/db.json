@@ -353,6 +353,22 @@
       "userId": "502",
       "indexRef": 19,
       "createdAt": "2017-04-26T19:39:05.420Z"
+    },
+    {
+      "title": "Novo título",
+      "body": "Novo corpo",
+      "userId": "602",
+      "indexRef": 25,
+      "createdAt": "2021-10-17T21:57:28.472Z",
+      "id": "2NYidmC"
+    },
+    {
+      "title": "Novo título 2",
+      "body": "Novo corpo 2",
+      "userId": "602",
+      "indexRef": 26,
+      "createdAt": "2021-10-17T21:58:30.789Z",
+      "id": "CI6Ldpk"
     }
   ],
   "comments": [

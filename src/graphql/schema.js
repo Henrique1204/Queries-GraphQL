@@ -13,10 +13,17 @@ const rootTypesDefs = gql`
   type Query {
     empty: Boolean!
   }
+
+  type Mutation {
+    empty: Boolean!
+  }
 `;
 
 const rootResolvers = {
   Query: {
+    empty: () => false,
+  },
+  Mutation: {
     empty: () => false,
   },
 };

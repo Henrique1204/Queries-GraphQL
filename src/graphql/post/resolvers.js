@@ -21,9 +21,7 @@ const post = async (_, { id }, { dataSources }) => {
 };
 
 const posts = async (_, { input }, { dataSources }) => {
-  const post = dataSources.postApi.getPosts(input);
-
-  return post;
+  return dataSources.postApi.getPosts(input);
 };
 
 const unixTimestamp = ({ createdAt }) => {
@@ -32,8 +30,8 @@ const unixTimestamp = ({ createdAt }) => {
   return Math.floor(timestamp);
 };
 
-const user = async ({ userId }, _, { userDataLoader }) => {
-  return userDataLoader.load(userId);
+const user = async ({ userId }, _, { dataSources }) => {
+  return dataSources.userApi.batchLoaderById(userId);
 };
 
 const postsResolvers = {

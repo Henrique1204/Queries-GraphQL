@@ -7,8 +7,8 @@ const postTypesDefs = gql`
   }
 
   extend type Mutation {
-    createPost(data: CreatePostInput): PostResult!
-    createPposts(input: ApiFiltersInput): [Post!]!
+    createPost(data: CreatePostInput): Post!
+    updatePost(postId: ID!, data: UpdatePostInput!): Post!
   }
 
   interface PostError {
@@ -44,6 +44,12 @@ const postTypesDefs = gql`
     title: String!
     body: String!
     userId: ID!
+  }
+
+  input UpdatePostInput {
+    title: String
+    body: String
+    userId: ID
   }
 `;
 

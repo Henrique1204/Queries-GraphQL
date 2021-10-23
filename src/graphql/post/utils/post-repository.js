@@ -19,7 +19,6 @@ export const createPostInfo = async (data, dataSource) => {
     _order: 'desc',
   });
 
-  console.log(indexRefPost);
   const indexRef = indexRefPost.indexRef + 1;
 
   return {
@@ -40,4 +39,26 @@ export const createPostFn = async (data, dataSource) => {
   }
 
   return await dataSource.post('', { ...postInfos });
+};
+
+export const updatePostFn = async (id, data, dataSource) => {
+  if (!id) throw new ValidationError('Faltou o id do post');
+
+  const { userId, title, body } = data;
+
+  if (typeof userId !== 'undefined' && userId === '') {
+    throw new ValidationError('Você precisa enviar o userId');
+  }
+
+  if (userId) await usersExist(userId, dataSource);
+
+  if (typeof title !== 'undefined' && title === '') {
+    throw new ValidationError('Você precisa enviar o userId');
+  }
+
+  if (typeof body !== 'undefined' && body === '') {
+    throw new ValidationError('Você precisa enviar o userId');
+  }
+
+  return await dataSource.patch(id, { ...data });
 };

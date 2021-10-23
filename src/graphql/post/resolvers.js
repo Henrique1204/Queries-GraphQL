@@ -30,6 +30,10 @@ const createPost = async (_, { data }, { dataSources }) => {
   return dataSources.postApi.createPost(data);
 };
 
+const updatePost = async (_, { postId, data }, { dataSources }) => {
+  return dataSources.postApi.updatePost(postId, data);
+};
+
 // Field resolvers
 const unixTimestamp = ({ createdAt }) => {
   const timestamp = new Date(createdAt).getTime() / 100;
@@ -43,7 +47,7 @@ const user = async ({ userId }, _, { dataSources }) => {
 
 const postsResolvers = {
   Query: { post, posts },
-  Mutation: { createPost },
+  Mutation: { createPost, updatePost },
   Post: { unixTimestamp, user },
   PostResult: {
     __resolveType: (obj) => {

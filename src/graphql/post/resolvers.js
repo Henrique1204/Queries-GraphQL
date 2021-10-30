@@ -34,6 +34,10 @@ const updatePost = async (_, { postId, data }, { dataSources }) => {
   return dataSources.postApi.updatePost(postId, data);
 };
 
+const deletePost = async (_, { postId }, { dataSources }) => {
+  return dataSources.postApi.deletePost(postId);
+};
+
 // Field resolvers
 const unixTimestamp = ({ createdAt }) => {
   const timestamp = new Date(createdAt).getTime() / 100;
@@ -47,7 +51,7 @@ const user = async ({ userId }, _, { dataSources }) => {
 
 const postsResolvers = {
   Query: { post, posts },
-  Mutation: { createPost, updatePost },
+  Mutation: { createPost, updatePost, deletePost },
   Post: { unixTimestamp, user },
   PostResult: {
     __resolveType: (obj) => {

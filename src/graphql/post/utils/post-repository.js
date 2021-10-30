@@ -62,3 +62,11 @@ export const updatePostFn = async (id, data, dataSource) => {
 
   return await dataSource.patch(id, { ...data });
 };
+
+export const deletePostFn = async (id, dataSource) => {
+  if (!id) throw new ValidationError('Faltou o id do post');
+
+  const deleted = await dataSource.delete(id);
+
+  return !!deleted;
+};

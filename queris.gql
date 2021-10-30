@@ -68,3 +68,23 @@ query GET_USERS_WITH_API_FILTERS {
     indexRef
   }
 }
+
+mutation CREATE_USER($data: CreateUserInput) {
+  createUser(data: $data) {
+    id,
+    firstName,
+    indexRef
+  }
+}
+
+mutation UPDATE_USER($userId: ID!, $data: UpdateUserInput!) {
+  updateUser(userId: $userId, data: $data) {
+    id,
+    indexRef,
+    firstName
+  }
+}
+
+mutation DELETE_USER($userId: ID!) {
+  deleteUser(userId: $userId)
+}

@@ -2,9 +2,14 @@ import { gql } from 'apollo-server-core';
 
 const userTypesDefs = gql`
   extend type Query {
-    # Forma de passar um parâmetro para o resolver na query.
     user(id: ID!): User!
     users(input: ApiFiltersInput): [User!]!
+  }
+
+  extend type Mutation {
+    createUser(data: CreateUserInput): User!
+    updateUser(userId: ID!, data: UpdateUserInput!): User!
+    deleteUser(userId: ID!): Boolean!
   }
 
   type User {
@@ -15,6 +20,18 @@ const userTypesDefs = gql`
     indexRef: Int!
     createdAt: String!
     posts: [Post!]!
+  }
+
+  input CreateUserInput {
+    firstName: String!
+    lastName: String!
+    userName: String!
+  }
+
+  input UpdateUserInput {
+    firstName: String
+    lastName: String
+    userName: String
   }
 `;
 

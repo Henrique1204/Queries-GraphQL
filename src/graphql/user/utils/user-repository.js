@@ -34,64 +34,60 @@ export const validatePassword = (password) => {
   }
 };
 
+export const validateUserFields = (data, isRequired = true) => {
+  const fields = ['firstName', 'lastName', 'userName', 'password'];
+
+  if (!isRequired) {
+    for (let key in data) {
+      if (data[key] === '') {
+        throw new ValidationError(`Você precisa enviar o ${key}`);
+      }
+
+      if (key === 'password' && data[key]) validatePassword(data[key]);
+    }
+
+    return;
+  }
+
+  for (let key of fields) {
+    if (!data[key]) throw new ValidationError(`Você precisa enviar [${key}]`);
+
+    if (key === 'password') validatePassword(data[key]);
+  }
+};
+
+export const createHashPassword = async (password, passwordHash) => {
+  if (password && !passwordHash) return await bcrypt.hash(password, 12);
+
+  return passwordHash;
+};
+
 export const createUserFn = async (data, dataSource) => {
   const userInfos = await createUserInfo(data, dataSource);
-  const { firstName, lastName, userName, password, passwordHash } = userInfos;
-  let newHash;
+  const { password, passwordHash, ...fields } = userInfos;
 
-  if (!firstName || !lastName || !userName || !password) {
-    throw new ValidationError(
-      'Você precisa enviar [firstName | lastName | userName | password]',
-    );
-  }
+  validateUserFields(data);
 
-  validatePassword(password);
-
-  if (password && !passwordHash) {
-    newHash = await bcrypt.hash(password, 12);
-  }
+  const hash = await createHashPassword(password, passwordHash);
 
   return await dataSource.post('', {
-    firstName,
-    lastName,
-    userName,
-    password: newHash,
+    ...fields,
+    password: hash,
   });
 };
 
 export const updateUserFn = async (id, data, dataSource) => {
   if (!id) throw new ValidationError('Faltou o id do user');
 
-  const { firstName, lastName, userName, password, passwordHash } = data;
-  let newHash;
+  const { password, passwordHash, ...fields } = data;
 
-  if (typeof firstName !== 'undefined' && firstName === '') {
-    throw new ValidationError('Você precisa enviar o firstName');
-  }
+  validateUserFields(data, false);
 
-  if (typeof lastName !== 'undefined' && lastName === '') {
-    throw new ValidationError('Você precisa enviar o lastName');
-  }
-
-  if (typeof userName !== 'undefined' && userName === '') {
-    throw new ValidationError('Você precisa enviar o userName');
-  }
-
-  if (typeof password !== 'undefined' && password === '') {
-    throw new ValidationError('Você precisa enviar o userName');
-  }
-
-  if (password) validatePassword(password);
-
-  if (password && !passwordHash) {
-    newHash = await bcrypt.hash(password, 12);
-  }
+  const hash = await createHashPassword(password, passwordHash);
 
   return await dataSource.patch(id, {
-    firstName,
-    lastName,
-    userName,
-    password: newHash,
+    fields,
+    password: hash,
   });
 };
 

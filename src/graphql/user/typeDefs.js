@@ -18,7 +18,7 @@ const userTypesDefs = gql`
     lastName: String!
     userName: String!
     indexRef: Int!
-    passwordHash: String!
+    password: String!
     createdAt: String!
     posts: [Post!]!
   }

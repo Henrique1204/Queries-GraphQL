@@ -159,6 +159,34 @@
       "userName": "marcia_carvalho81",
       "indexRef": 1,
       "createdAt": "2016-12-08T00:49:39.870Z"
+    },
+    {
+      "firstName": "Teste",
+      "lastName": "Souza",
+      "userName": "Teste_sz",
+      "password": "$2b$12$6bwYcFiYWv615lv5Xo2NfuuFK0FSfHjif7KX0MeFZir//AS1V8Mq6",
+      "id": "ngWvIM9"
+    },
+    {
+      "firstName": "Teste",
+      "lastName": "Souza",
+      "userName": "Teste_sz",
+      "password": "$2b$12$UNX6CIbyGeNyktk.SF8/r.7AQ.tzu5h/e45PeRwcMmNuftk25Yuh.",
+      "id": "2xf2ghc"
+    },
+    {
+      "firstName": "Teste",
+      "lastName": "Souza",
+      "userName": "Teste_sz",
+      "password": "$2b$12$SJLiqVwVx6r/SI4VsfUbD.yLpIK1ymWVyr//uYCqWGpxg1xKK5.NK",
+      "id": "t2oFS40"
+    },
+    {
+      "firstName": "Teste",
+      "lastName": "Souza",
+      "userName": "Teste_sz",
+      "password": "$2b$12$vasB71FTZ1/guLLC.DkbhufsWiiX9D8Yu8FlIo7aEMPaeN.fh4Rpa",
+      "id": "rxQdJ1u"
     }
   ],
   "posts": [

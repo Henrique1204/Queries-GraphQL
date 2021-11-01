@@ -1,7 +1,9 @@
-import { ValidationError } from 'apollo-server-errors';
+import bcrypt from 'bcrypt';
+
+import { UserInputError, ValidationError } from 'apollo-server-errors';
 
 export const createUserInfo = async (data, dataSource) => {
-  const { firstName, lastName, userName } = data;
+  const { firstName, lastName, userName, password } = data;
 
   const [indexRefPost] = await dataSource.get('', {
     _limit: 1,
@@ -17,26 +19,51 @@ export const createUserInfo = async (data, dataSource) => {
     userName,
     indexRef,
     createdAt: new Date().toISOString(),
+    password,
   };
+};
+
+export const validatePassword = (password) => {
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,30}$/;
+
+  if (!password.match(strongPasswordRegex)) {
+    throw new UserInputError(`
+      Senha precisa ter no mínimo uma letra minúscula, uma letra maiúscula e um número.
+      E precisa ter entre 6 a 30 caracteres.
+    `);
+  }
 };
 
 export const createUserFn = async (data, dataSource) => {
   const userInfos = await createUserInfo(data, dataSource);
-  const { firstName, lastName, userName } = userInfos;
+  const { firstName, lastName, userName, password, passwordHash } = userInfos;
+  let newHash;
 
-  if (!firstName || !lastName || !userName) {
+  if (!firstName || !lastName || !userName || !password) {
     throw new ValidationError(
-      'Você precisa enviar [firstName | lastName | userName]',
+      'Você precisa enviar [firstName | lastName | userName | password]',
     );
   }
 
-  return await dataSource.post('', { ...userInfos });
+  validatePassword(password);
+
+  if (password && !passwordHash) {
+    newHash = await bcrypt.hash(password, 12);
+  }
+
+  return await dataSource.post('', {
+    firstName,
+    lastName,
+    userName,
+    password: newHash,
+  });
 };
 
 export const updateUserFn = async (id, data, dataSource) => {
   if (!id) throw new ValidationError('Faltou o id do user');
 
-  const { firstName, lastName, userName } = data;
+  const { firstName, lastName, userName, password, passwordHash } = data;
+  let newHash;
 
   if (typeof firstName !== 'undefined' && firstName === '') {
     throw new ValidationError('Você precisa enviar o firstName');
@@ -50,7 +77,22 @@ export const updateUserFn = async (id, data, dataSource) => {
     throw new ValidationError('Você precisa enviar o userName');
   }
 
-  return await dataSource.patch(id, { ...data });
+  if (typeof password !== 'undefined' && password === '') {
+    throw new ValidationError('Você precisa enviar o userName');
+  }
+
+  if (password) validatePassword(password);
+
+  if (password && !passwordHash) {
+    newHash = await bcrypt.hash(password, 12);
+  }
+
+  return await dataSource.patch(id, {
+    firstName,
+    lastName,
+    userName,
+    password: newHash,
+  });
 };
 
 export const deleteUserFn = async (id, dataSource) => {

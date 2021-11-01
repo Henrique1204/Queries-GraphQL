@@ -18,6 +18,7 @@ const userTypesDefs = gql`
     lastName: String!
     userName: String!
     indexRef: Int!
+    passwordHash: String!
     createdAt: String!
     posts: [Post!]!
   }
@@ -26,12 +27,14 @@ const userTypesDefs = gql`
     firstName: String!
     lastName: String!
     userName: String!
+    password: String!
   }
 
   input UpdateUserInput {
     firstName: String
     lastName: String
     userName: String
+    password: String
   }
 `;
 

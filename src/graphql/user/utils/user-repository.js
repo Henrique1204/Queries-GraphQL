@@ -86,7 +86,7 @@ export const updateUserFn = async (id, data, dataSource) => {
   const hash = await createHashPassword(password, passwordHash);
 
   return await dataSource.patch(id, {
-    fields,
+    ...fields,
     password: hash,
   });
 };

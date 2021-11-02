@@ -161,16 +161,13 @@
       "createdAt": "2016-12-08T00:49:39.870Z"
     },
     {
-      "firstName": "Teste",
-      "lastName": "Souza",
-      "userName": "Teste_sz",
+      "firstName": "Paulin",
+      "lastName": "Souzin",
+      "userName": "paulin.souzin",
       "indexRef": 21,
-      "createdAt": "2021-11-01T06:37:54.767Z",
-      "password": "$2b$12$NFv1ZrnUb31nhMdO8iK4ReocXionnB/YKw/LnonBmGG7NN3j1VFfW",
-      "id": "YAhIaMO",
-      "fields": {
-        "firstName": "Atualizado"
-      }
+      "createdAt": "2021-11-02T22:24:55.430Z",
+      "password": "$2b$12$K0IJ.Y5xPIDbmqsgK.DwIe1CT4k77SeP8k/XsTSPKpVq9Z1YYg2iW",
+      "id": "KxVm5UY"
     }
   ],
   "posts": [

@@ -1,14 +1,26 @@
-import fetch from 'node-fetch';
+import jwt from 'jsonwebtoken';
 
-import { getUsers } from './user/utils/api';
-import { makeUserDataLoader } from './user/dataloaders';
+const authorizeUser = (req) => {
+  try {
+    const { authorization } = req.headers;
 
-import { getPosts } from './post/utils/api';
+    const token = authorization.split(' ')[1];
 
-const context = () => ({
-  getUser: getUsers(fetch),
-  getPosts: getPosts(fetch),
-  userDataLoader: makeUserDataLoader(getUsers(fetch)),
-});
+    const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    return userId;
+  } catch ({ message }) {
+    console.log(message);
+    return null;
+  }
+};
+
+const context = ({ req }) => {
+  const loggedUserId = authorizeUser(req);
+
+  return {
+    loggedUserId,
+  };
+};
 
 export default context;

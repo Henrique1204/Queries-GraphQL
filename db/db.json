@@ -166,8 +166,9 @@
       "userName": "paulin.souzin",
       "indexRef": 21,
       "createdAt": "2021-11-02T22:24:55.430Z",
-      "password": "$2b$12$ZnBodIK5S9CYkQQ5U6E5YOyTKV3vNUrZU4uWNOaVegy5UnLz.wLBG",
-      "id": "KxVm5UY"
+      "password": "$2b$12$0g7JSaGlCg.4Fc9J6IK/ZOTUoMXdFtj34U4wpFAwcXIaysi2tYGYq",
+      "id": "KxVm5UY",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJLeFZtNVVZIiwiaWF0IjoxNjM1OTE2NjIwLCJleHAiOjE2MzU5MjAyMjB9.uNYnQMqLRuLI6PR40b4y0Yzo7HqxXqQVTV6jWZ_QpQI"
     }
   ],
   "posts": [

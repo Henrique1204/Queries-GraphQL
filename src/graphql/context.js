@@ -1,12 +1,19 @@
 import jwt from 'jsonwebtoken';
+import { UsersApi } from './user/datasources';
 
-const authorizeUser = (req) => {
+const authorizeUser = async (req) => {
   try {
     const { authorization } = req.headers;
 
     const token = authorization.split(' ')[1];
 
     const { userId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    const usersApi = new UsersApi();
+    usersApi.initialize({});
+    const { token: tokenUser } = await usersApi.getUser(userId);
+
+    if (tokenUser !== token) throw new Error('Token inválido');
 
     return userId;
   } catch ({ message }) {
@@ -15,8 +22,8 @@ const authorizeUser = (req) => {
   }
 };
 
-const context = ({ req }) => {
-  const loggedUserId = authorizeUser(req);
+const context = async ({ req }) => {
+  const loggedUserId = await authorizeUser(req);
 
   return {
     loggedUserId,

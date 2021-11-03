@@ -38,6 +38,7 @@ export class LoginApi extends RESTDataSource {
     if (!passwordValid) throw new AuthenticationError('Senha inválida');
 
     const token = this.createJwtToken({ userId });
+    await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
     return { userId, token };
   }

@@ -1,3 +1,5 @@
+import { AuthenticationError } from 'apollo-server-errors';
+
 // Query resolvers
 const user = async (_, { id }, { dataSources }) => {
   return dataSources.userApi.getUser(id);
@@ -12,12 +14,24 @@ const createUser = async (_, { data }, { dataSources }) => {
   return dataSources.userApi.createUser(data);
 };
 
-const updateUser = async (_, { userId, data }, { dataSources }) => {
-  return dataSources.userApi.updateUser(userId, data);
+const updateUser = async (
+  _,
+  { userId, data },
+  { loggedUserId, dataSources },
+) => {
+  if (!loggedUserId || userId !== loggedUserId) {
+    throw new AuthenticationError('Você não tem autorização para essa ação');
+  }
+
+  return dataSources.userApi.updateUser(loggedUserId, data);
 };
 
-const deleteUser = async (_, { userId }, { dataSources }) => {
-  return dataSources.userApi.deleteUser(userId);
+const deleteUser = async (_, { userId }, { loggedUserId, dataSources }) => {
+  if (!loggedUserId || userId !== loggedUserId) {
+    throw new AuthenticationError('Você não tem autorização para essa ação');
+  }
+
+  return dataSources.userApi.deleteUser(loggedUserId);
 };
 
 // Field resolvers

@@ -169,6 +169,16 @@
       "password": "$2b$12$0g7JSaGlCg.4Fc9J6IK/ZOTUoMXdFtj34U4wpFAwcXIaysi2tYGYq",
       "id": "KxVm5UY",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJLeFZtNVVZIiwiaWF0IjoxNjM1OTE2NjIwLCJleHAiOjE2MzU5MjAyMjB9.uNYnQMqLRuLI6PR40b4y0Yzo7HqxXqQVTV6jWZ_QpQI"
+    },
+    {
+      "firstName": "Paulo",
+      "lastName": "Henrique",
+      "userName": "paulo.henrique",
+      "indexRef": 22,
+      "createdAt": "2021-11-12T01:28:55.137Z",
+      "password": "$2b$12$CDEzmXEasmDAvIHQdvqhiuRv1vUwiogqED/d9VMdBKl3UoSLz6aLC",
+      "id": "4zsZwVO",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0enNad1ZPIiwiaWF0IjoxNjM2NjgwNTU3LCJleHAiOjE2MzY2ODQxNTd9._Nya4CWko9vZlawiJS3q3dMiDjOhZ-uJA4DJTfI6h7c"
     }
   ],
   "posts": [
@@ -363,6 +373,14 @@
       "userId": "502",
       "indexRef": 19,
       "createdAt": "2017-04-26T19:39:05.420Z"
+    },
+    {
+      "title": "Testando create com Token",
+      "body": "BIsso é um teste né",
+      "userId": "4zsZwVO",
+      "indexRef": 25,
+      "createdAt": "2021-11-12T01:30:33.330Z",
+      "id": "1xWgV3U"
     }
   ],
   "comments": [

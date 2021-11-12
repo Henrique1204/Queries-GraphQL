@@ -44,7 +44,6 @@ const postTypesDefs = gql`
   input CreatePostInput {
     title: String!
     body: String!
-    userId: ID!
   }
 
   input UpdatePostInput {

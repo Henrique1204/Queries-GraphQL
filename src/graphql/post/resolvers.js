@@ -1,3 +1,5 @@
+import { checkLoggedIn } from '../login/utils/auth-functions';
+
 // Query resolvers
 const post = async (_, { id }, { dataSources }) => {
   const post = await dataSources.postApi.getPost(id);
@@ -26,7 +28,10 @@ const posts = async (_, { input }, { dataSources }) => {
 };
 
 // Mutation resolvers
-const createPost = async (_, { data }, { dataSources }) => {
+const createPost = async (_, { data }, { dataSources, loggedUserId }) => {
+  checkLoggedIn(loggedUserId);
+
+  data.userId = loggedUserId;
   return dataSources.postApi.createPost(data);
 };
 

@@ -1,4 +1,4 @@
-import { AuthenticationError } from 'apollo-server-errors';
+import checkOwner from '../login/utils/checkOwner';
 
 // Query resolvers
 const user = async (_, { id }, { dataSources }) => {
@@ -19,17 +19,13 @@ const updateUser = async (
   { userId, data },
   { loggedUserId, dataSources },
 ) => {
-  if (!loggedUserId || userId !== loggedUserId) {
-    throw new AuthenticationError('Você não tem autorização para essa ação');
-  }
+  checkOwner(loggedUserId, userId);
 
   return dataSources.userApi.updateUser(loggedUserId, data);
 };
 
 const deleteUser = async (_, { userId }, { loggedUserId, dataSources }) => {
-  if (!loggedUserId || userId !== loggedUserId) {
-    throw new AuthenticationError('Você não tem autorização para essa ação');
-  }
+  checkOwner(loggedUserId, userId);
 
   return dataSources.userApi.deleteUser(loggedUserId);
 };

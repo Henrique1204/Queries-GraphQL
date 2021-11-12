@@ -49,7 +49,6 @@ const postTypesDefs = gql`
   input UpdatePostInput {
     title: String
     body: String
-    userId: ID
   }
 `;
 

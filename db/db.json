@@ -179,6 +179,16 @@
       "password": "$2b$12$CDEzmXEasmDAvIHQdvqhiuRv1vUwiogqED/d9VMdBKl3UoSLz6aLC",
       "id": "4zsZwVO",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0enNad1ZPIiwiaWF0IjoxNjM2NjgwNTU3LCJleHAiOjE2MzY2ODQxNTd9._Nya4CWko9vZlawiJS3q3dMiDjOhZ-uJA4DJTfI6h7c"
+    },
+    {
+      "firstName": "Lari",
+      "lastName": "Farias",
+      "userName": "lari.farias",
+      "indexRef": 23,
+      "createdAt": "2021-11-12T02:19:55.036Z",
+      "password": "$2b$12$qzPjbMUNVXecMD/TlnvbJef6ZjxrrBkGGvqJqMyxxTdQXj.iPJyL6",
+      "id": "kgdhGW7",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJrZ2RoR1c3IiwiaWF0IjoxNjM2NjgzNjEyLCJleHAiOjE2MzY2ODcyMTJ9.VkhRFqthB0IQSX0rxAp8wy_iEn8DGxyZahdgairj9_M"
     }
   ],
   "posts": [
@@ -381,6 +391,22 @@
       "indexRef": 25,
       "createdAt": "2021-11-12T01:30:33.330Z",
       "id": "1xWgV3U"
+    },
+    {
+      "title": "Testando create com Token 2",
+      "body": "BIsso é um teste né 2",
+      "userId": "4zsZwVO",
+      "indexRef": 26,
+      "createdAt": "2021-11-12T02:16:56.757Z",
+      "id": "qHQeleu"
+    },
+    {
+      "title": "Testando create com Token 67",
+      "body": "BIsso é um teste né 67",
+      "userId": "4zsZwVO",
+      "indexRef": 27,
+      "createdAt": "2021-11-12T02:17:09.283Z",
+      "id": "p5ENx2O"
     }
   ],
   "comments": [

@@ -1,4 +1,5 @@
 import { ValidationError } from 'apollo-server-errors';
+import { checkOwner } from '../../login/utils/auth-functions';
 
 export const usersExist = async (userId, dataSource) => {
   try {
@@ -44,7 +45,16 @@ export const createPostFn = async (data, dataSource) => {
 export const updatePostFn = async (id, data, dataSource) => {
   if (!id) throw new ValidationError('Faltou o id do post');
 
-  const { userId, title, body } = data;
+  const foundPost = await dataSource.get(id, undefined, {
+    cacheOptions: { ttl: 0 },
+  });
+
+  if (!foundPost) throw new Error('Esse post não existe.');
+
+  const userId = foundPost.userId;
+  checkOwner(dataSource.context.loggedUserId, userId);
+
+  const { title, body } = data;
 
   if (typeof userId !== 'undefined' && userId === '') {
     throw new ValidationError('Você precisa enviar o userId');

@@ -42,17 +42,22 @@ export const createPostFn = async (data, dataSource) => {
   return await dataSource.post('', { ...postInfos });
 };
 
-export const updatePostFn = async (id, data, dataSource) => {
-  if (!id) throw new ValidationError('Faltou o id do post');
-
+export const findPostOwner = async (dataSource, id) => {
   const foundPost = await dataSource.get(id, undefined, {
     cacheOptions: { ttl: 0 },
   });
 
   if (!foundPost) throw new Error('Esse post não existe.');
 
-  const userId = foundPost.userId;
-  checkOwner(dataSource.context.loggedUserId, userId);
+  checkOwner(dataSource.context.loggedUserId, foundPost.userId);
+
+  return foundPost;
+};
+
+export const updatePostFn = async (id, data, dataSource) => {
+  if (!id) throw new ValidationError('Faltou o id do post');
+
+  const { userId } = await findPostOwner(dataSource, id);
 
   const { title, body } = data;
 
@@ -75,6 +80,8 @@ export const updatePostFn = async (id, data, dataSource) => {
 
 export const deletePostFn = async (id, dataSource) => {
   if (!id) throw new ValidationError('Faltou o id do post');
+
+  await findPostOwner(dataSource, id);
 
   const deleted = await dataSource.delete(id);
 

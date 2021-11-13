@@ -17,7 +17,6 @@ const authorizeUser = async (req) => {
 
     return userId;
   } catch ({ message }) {
-    console.log(message);
     return null;
   }
 };

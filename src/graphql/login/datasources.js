@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import { GET_USER } from '../../../api';
+import { checkOwner } from './utils/auth-functions';
 
 export class LoginApi extends RESTDataSource {
   constructor() {
@@ -23,7 +24,7 @@ export class LoginApi extends RESTDataSource {
     });
   }
 
-  async login(userName, password) {
+  async getUser(userName) {
     const [user] = await this.get(
       '',
       { userName },
@@ -31,6 +32,12 @@ export class LoginApi extends RESTDataSource {
     );
 
     if (!user) throw new AuthenticationError('O usuário não existe');
+
+    return user;
+  }
+
+  async login(userName, password) {
+    const user = await this.getUser(userName);
 
     const { password: passwordHash, id: userId } = user;
     const passwordValid = await this.checkUserPassword(password, passwordHash);
@@ -41,5 +48,15 @@ export class LoginApi extends RESTDataSource {
     await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
     return { userId, token };
+  }
+
+  async logout(userName) {
+    const { id } = await this.getUser(userName);
+
+    checkOwner(this.context.loggedUserId, id);
+
+    await this.patch(id, { token: '' }, { cacheOptions: { tll: 0 } });
+
+    return true;
   }
 }

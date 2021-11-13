@@ -198,7 +198,7 @@
       "createdAt": "2021-11-13T14:51:26.553Z",
       "password": "$2b$12$ms7sFmq0jhZvGxQaNkVHc.5ojJVbT9OmlkWTCbgqB/K77BkwyJMYG",
       "id": "FFz24sB",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJGRnoyNHNCIiwiaWF0IjoxNjM2ODE1MTEwLCJleHAiOjE2MzY4MTg3MTB9.dGDcPzi6qyjd6QZqiNQRiKF6WMHIQqPbKFMRma-c0IA"
+      "token": ""
     }
   ],
   "posts": [

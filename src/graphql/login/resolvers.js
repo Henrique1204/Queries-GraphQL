@@ -4,8 +4,12 @@ const login = async (_, { data }, { dataSources }) => {
   return dataSources.loginApi.login(userName, password);
 };
 
+const logout = async (_, { userName }, { dataSources }) => {
+  return dataSources.loginApi.logout(userName);
+};
+
 const loginResolvers = {
-  Mutation: { login },
+  Mutation: { login, logout },
 };
 
 export default loginResolvers;

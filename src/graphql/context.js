@@ -21,11 +21,12 @@ const authorizeUser = async (req) => {
   }
 };
 
-const context = async ({ req }) => {
+const context = async ({ req, res }) => {
   const loggedUserId = await authorizeUser(req);
 
   return {
     loggedUserId,
+    res,
   };
 };
 
